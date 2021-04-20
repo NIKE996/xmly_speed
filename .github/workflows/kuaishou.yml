@@ -1,0 +1,32 @@
+name: 小视频
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 0-12 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        ksUrl: ${{ secrets.ksUrl }}
+        KUAISHOUMV: ${{ secrets.KUAISHOUMV }}
+    steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/NIKE996/xmly_speed/.git ~/xmly_speed
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: npm install
+        run: |
+          cd ~/xmly_speed
+          npm install
+          npm install cron
+          npm install request
+      - name: '运行 【小视频】'
+        if: env.ksUrl
+        run: |
+          cd ~/xmly_speed  
+          node Task/Auto_Kuaishou.js
