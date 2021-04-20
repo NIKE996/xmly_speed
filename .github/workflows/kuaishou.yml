@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/NIKE996/xmly_speed/.git ~/xmly_speed
+          git clone https://github.com/NIKE996/xmly_speed.git ~/xmly_speed
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
