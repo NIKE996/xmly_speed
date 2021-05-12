@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        DSJ_HEADERS: ${{ secrets.xpreadCookie }}
+        xpreadCookie: ${{ secrets.xpreadCookie }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
